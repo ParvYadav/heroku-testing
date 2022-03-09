@@ -5,7 +5,7 @@ from sys import stdout
 from camera import VideoCamera
 from engineio.payload import Payload
 
-Payload.max_decode_packets = cfg.service.ENGINEIO_MAX_DECODE_PACKETS
+Payload.max_decode_packets = 50
 
 app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(stdout))
