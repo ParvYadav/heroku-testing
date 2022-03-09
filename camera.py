@@ -8,19 +8,6 @@ import face_recognition
 import dlib
 from scipy.spatial import distance as dist
 
-def eye_aspect_ratio(eye):
-    # compute the euclidean distance between the vertical eye landmarks
-    A = dist.euclidean(eye[1], eye[5])
-    B = dist.euclidean(eye[2], eye[4])
-
-    # compute the euclidean distance between the horizontal eye landmarks
-    C = dist.euclidean(eye[0], eye[3])
-
-    # compute the EAR
-    ear = (A + B) / (2 * C)
-    return ear
-
-
 
 
 class VideoCamera(object):
@@ -48,6 +35,18 @@ class VideoCamera(object):
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks (2).dat')
     
+    def eye_aspect_ratio(eye):
+        
+        # compute the euclidean distance between the vertical eye landmarks
+        A = dist.euclidean(eye[1], eye[5])
+        B = dist.euclidean(eye[2], eye[4])
+
+        # compute the euclidean distance between the horizontal eye landmarks
+        C = dist.euclidean(eye[0], eye[3])
+
+        # compute the EAR
+        ear = (A + B) / (2 * C)
+        return ear
     
     def process_one(self):
         if not self.to_process:
