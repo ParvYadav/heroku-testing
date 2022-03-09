@@ -29,7 +29,7 @@ class VideoCamera(object):
 
         bgr_image = cv2.flip(input_img, 1)  # Flip the image
         rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)  # Changing color from bgr to rgb
-        cv2.putText(frame, "Winked", (10, 30), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0, 0, 0),
+        cv2.putText(rgb_image, "Winked", (10, 30), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0, 0, 0),
                                 1)
 
         # ______________________________________________________________________________________________________________________
