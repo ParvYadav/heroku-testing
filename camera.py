@@ -54,7 +54,7 @@ class VideoCamera(object):
         
         # _______________________________________Performing some pre processing_______________________________________________
         
-        cv2.putText(rgb_image, "Winked {}".format(TOTAL), (10, 30), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0, 0, 0),1)
+        cv2.putText(rgb_image, "Winked {}".format('1'), (10, 30), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0, 0, 0),1)
                         
 
         # ______________________________________________________________________________________________________________________
