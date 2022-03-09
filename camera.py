@@ -19,21 +19,22 @@ class VideoCamera(object):
         thread = threading.Thread(target=self.keep_processing, args=())
         thread.daemon = True
         thread.start()
-    known_face_encodings = np.load('encodeListKnown_test_v5.npy', allow_pickle=True)
-    known_face_names = ['Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Ashi', 'Ashi', 'Ashi', 'Ashi', 'Ashish', 'Ashish', 'Ashish', 'Ashish', 'Ashish', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Bhaneshwari', 'Bhaneshwari', 'Bhaneshwari', 'Chhaya', 'Chhaya', 'Chhaya', 'Chhaya', 'Chhaya', 'Deepak', 'Deepak', 'Deepak', 'Madan Agrawal', 'Madan', 'Madhav', 'Madhav', 'Madhav', 'Madhav', 'Madhav', 'Manvi', 'Manvi', 'Navdeep', 'Navdeep', 'Navdeep', 'Nikita ', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Pankaj Dwivedi', 'Parv Yadav', 'Parv', 'Payal', 'Payal', 'Payal', 'Pooja', 'Pooja', 'Pooja', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht',
- 'Prashasht', 'Priyank', 'Priyank', 'Priyank', 'Shivangi', 'Shivangi', 'Shivangi', 'Shivangi', 'Shivangi', 'Shraddha', 'Shraddha', 'Shraddha', 'Shraddha', 'Shraddha', 'Shreya', 'Shreya Goyal', 'Tanishka', 'Tanishka', 'Tanishka', 'Tanishka', 'Tanvi Bhave', 'Tarun', 'Tarun Sinhal', 'Tilottama Sharma', 'Vandana Chouhan', 'Vijay Patidar', 'Vijeet Agrawal']
+        
+#     known_face_encodings = np.load('encodeListKnown_test_v5.npy', allow_pickle=True)
+#     known_face_names = ['Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Ashi', 'Ashi', 'Ashi', 'Ashi', 'Ashish', 'Ashish', 'Ashish', 'Ashish', 'Ashish', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Bhaneshwari', 'Bhaneshwari', 'Bhaneshwari', 'Chhaya', 'Chhaya', 'Chhaya', 'Chhaya', 'Chhaya', 'Deepak', 'Deepak', 'Deepak', 'Madan Agrawal', 'Madan', 'Madhav', 'Madhav', 'Madhav', 'Madhav', 'Madhav', 'Manvi', 'Manvi', 'Navdeep', 'Navdeep', 'Navdeep', 'Nikita ', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Pankaj Dwivedi', 'Parv Yadav', 'Parv', 'Payal', 'Payal', 'Payal', 'Pooja', 'Pooja', 'Pooja', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht',
+#  'Prashasht', 'Priyank', 'Priyank', 'Priyank', 'Shivangi', 'Shivangi', 'Shivangi', 'Shivangi', 'Shivangi', 'Shraddha', 'Shraddha', 'Shraddha', 'Shraddha', 'Shraddha', 'Shreya', 'Shreya Goyal', 'Tanishka', 'Tanishka', 'Tanishka', 'Tanishka', 'Tanvi Bhave', 'Tarun', 'Tarun Sinhal', 'Tilottama Sharma', 'Vandana Chouhan', 'Vijay Patidar', 'Vijeet Agrawal']
 
-    RIGHT_EYE_POINTS = list(range(36, 42))
-    LEFT_EYE_POINTS = list(range(42, 48))
+#     RIGHT_EYE_POINTS = list(range(36, 42))
+#     LEFT_EYE_POINTS = list(range(42, 48))
 
-    EYE_AR_THRESH = 0.33
-    EYE_AR_CONSEC_FRAMES = 2
+#     EYE_AR_THRESH = 0.33
+#     EYE_AR_CONSEC_FRAMES = 2
 
-    COUNTER = 0
-    TOTAL = 0
+#     COUNTER = 0
+#     TOTAL = 0
 
-    detector = dlib.get_frontal_face_detector()
-    predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks (2).dat')
+#     detector = dlib.get_frontal_face_detector()
+#     predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks (2).dat')
     
     def eye_aspect_ratio(eye):
         
@@ -62,17 +63,22 @@ class VideoCamera(object):
         bgr_image = cv2.flip(input_img, 1)  # Flip the image
         rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)  # Changing color from bgr to rgb
         # _______________________________________Performing some pre processing_______________________________________________
-#         RIGHT_EYE_POINTS = list(range(36, 42))
-#         LEFT_EYE_POINTS = list(range(42, 48))
+        known_face_encodings = np.load('encodeListKnown_test_v5.npy', allow_pickle=True)
+        known_face_names = ['Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Aman', 'Ashi', 'Ashi', 'Ashi', 'Ashi', 'Ashish', 'Ashish', 'Ashish', 'Ashish', 'Ashish', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Barkha Sharma', 'Bhaneshwari', 'Bhaneshwari', 'Bhaneshwari', 'Chhaya', 'Chhaya', 'Chhaya', 'Chhaya', 'Chhaya', 'Deepak', 'Deepak', 'Deepak', 'Madan Agrawal', 'Madan', 'Madhav', 'Madhav', 'Madhav', 'Madhav', 'Madhav', 'Manvi', 'Manvi', 'Navdeep', 'Navdeep', 'Navdeep', 'Nikita ', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Nikita', 'Pankaj Dwivedi', 'Parv Yadav', 'Parv', 'Payal', 'Payal', 'Payal', 'Pooja', 'Pooja', 'Pooja', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht', 'Prashasht',
+        'Prashasht', 'Priyank', 'Priyank', 'Priyank', 'Shivangi', 'Shivangi', 'Shivangi', 'Shivangi', 'Shivangi', 'Shraddha', 'Shraddha', 'Shraddha', 'Shraddha', 'Shraddha', 'Shreya', 'Shreya Goyal', 'Tanishka', 'Tanishka', 'Tanishka', 'Tanishka', 'Tanvi Bhave', 'Tarun', 'Tarun Sinhal', 'Tilottama Sharma', 'Vandana Chouhan', 'Vijay Patidar', 'Vijeet Agrawal']
+
         
-#         EYE_AR_THRESH = 0.33
-#         EYE_AR_CONSEC_FRAMES = 2
+        RIGHT_EYE_POINTS = list(range(36, 42))
+        LEFT_EYE_POINTS = list(range(42, 48))
         
-#         COUNTER = 0
-#         TOTAL = 0
+        EYE_AR_THRESH = 0.33
+        EYE_AR_CONSEC_FRAMES = 2
         
-#         detector = dlib.get_frontal_face_detector()
-#         predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks (2).dat')
+        COUNTER = 0
+        TOTAL = 0
+        
+        detector = dlib.get_frontal_face_detector()
+        predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks (2).dat')
         
         # _______________________________________Performing some pre processing_______________________________________________
         
