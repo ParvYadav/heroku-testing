@@ -50,7 +50,7 @@ class VideoCamera(object):
         TOTAL = 0
         
         detector = dlib.get_frontal_face_detector()
-        predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks (2).dat')
+#         predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks (2).dat')
         
         # _______________________________________Performing some pre processing_______________________________________________
         
