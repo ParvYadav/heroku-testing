@@ -35,8 +35,8 @@ class VideoCamera(object):
     detector = dlib.get_frontal_face_detector()
 #     predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks (2).dat')
 
+    global sequence_count_frame
     sequence_count_frame = 0
-    
     def process_one(self):
         if not self.to_process:
             return
